@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$HOME/.nvm/versions/node/*/bin:$HOME/.volta/bin:$PATH\")",
+      "Read(//usr/local/bin/**)",
+      "Read(//usr/local/**)",
+      "Read(//opt/**)",
+      "Bash(mdfind -name \"node\")",
+      "Bash(gh repo:*)",
+      "Bash(brew list:*)",
+      "Bash(brew install:*)",
+      "Bash(curl -sL https://github.com/cli/cli/releases/latest/download/gh_2.67.0_macOS_arm64.zip -o /tmp/gh.zip)",
+      "Bash(unzip -o /tmp/gh.zip -d /tmp/gh)",
+      "Bash(cp /tmp/gh/gh_2.67.0_macOS_arm64/bin/gh /Users/patrick/.local/bin/gh)",
+      "Bash(chmod +x /Users/patrick/.local/bin/gh)",
+      "Bash(rm -rf /tmp/gh /tmp/gh.zip)",
+      "Bash(curl -sL https://api.github.com/repos/cli/cli/releases/latest)",
+      "Bash(python3 -c \"import sys,json; assets=json.load\\(sys.stdin\\)['assets']; [print\\(a['browser_download_url']\\) for a in assets if 'macOS' in a['name'] and 'arm64' in a['name'] and a['name'].endswith\\('.zip'\\)]\")",
+      "Bash(curl -sL \"https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_arm64.zip\" -o /tmp/gh.zip)",
+      "Bash(cp /tmp/gh/gh_2.89.0_macOS_arm64/bin/gh /Users/patrick/.local/bin/gh)",
+      "Bash(gh --version)",
+      "Bash(gh auth:*)",
+      "Bash(git:*)"
+    ]
+  }
+}
