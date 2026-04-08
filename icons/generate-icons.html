@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head><title>Generate Deez Icons</title></head>
+<body style="background:#111;color:#fff;font-family:sans-serif;padding:40px;text-align:center;">
+<h2>Deez App Icons</h2>
+<p>Right-click each icon and "Save Image As" to save them, or they auto-download.</p>
+<canvas id="c192" width="192" height="192"></canvas>
+<canvas id="c512" width="512" height="512"></canvas>
+<script>
+function drawIcon(canvas) {
+  const s = canvas.width;
+  const ctx = canvas.getContext('2d');
+
+  // Background gradient
+  const bg = ctx.createLinearGradient(0, 0, s, s);
+  bg.addColorStop(0, '#1a0536');
+  bg.addColorStop(0.5, '#2d1069');
+  bg.addColorStop(1, '#0f0a1a');
+  ctx.fillStyle = bg;
+
+  // Rounded rect
+  const r = s * 0.22;
+  ctx.beginPath();
+  ctx.moveTo(r, 0);
+  ctx.lineTo(s - r, 0);
+  ctx.quadraticCurveTo(s, 0, s, r);
+  ctx.lineTo(s, s - r);
+  ctx.quadraticCurveTo(s, s, s - r, s);
+  ctx.lineTo(r, s);
+  ctx.quadraticCurveTo(0, s, 0, s - r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.fill();
+
+  // Glow
+  const glow = ctx.createRadialGradient(s*0.3, s*0.3, 0, s*0.5, s*0.5, s*0.7);
+  glow.addColorStop(0, 'rgba(168, 85, 247, 0.3)');
+  glow.addColorStop(1, 'transparent');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, s, s);
+
+  // Lotus emoji
+  ctx.font = `${s * 0.5}px serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🪷', s/2, s * 0.42);
+
+  // "DEEZ" text
+  ctx.font = `bold ${s * 0.13}px -apple-system, sans-serif`;
+  ctx.fillStyle = '#fff';
+  ctx.fillText('DEEZ', s/2, s * 0.78);
+
+  // Auto download
+  const link = document.createElement('a');
+  link.download = `icon-${s}.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+drawIcon(document.getElementById('c192'));
+drawIcon(document.getElementById('c512'));
+</script>
+</body>
+</html>
